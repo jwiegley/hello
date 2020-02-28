@@ -8,4 +8,4 @@ executables:
   hello:
     main: Main.hs
     dependencies:
-      - base >=4.7 && <4.9
+      - base >=4.7 && <5
