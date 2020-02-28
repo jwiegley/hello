@@ -1,0 +1,7 @@
+/c++/hello
+*.vok
+*.vos
+/coq/Makefile.coq
+/coq/Makefile.coq.conf
+/rust/target/
+/coq/.Makefile.coq.d
