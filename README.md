@@ -1,4 +1,4 @@
-# Greetings the world in many languages
+# Greeting the world in many languages
 
 This repository contains simple Hello World programs in various languages that
 I use. What is perhaps of more interest is that I've created simple Nix
