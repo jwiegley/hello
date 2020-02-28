@@ -1,0 +1,11 @@
+name:       hello
+version:    1.0.0
+license:    BSD3
+author:     John Wiegley
+maintainer: johnw@newartisans.com
+
+executables:
+  hello:
+    main: Main.hs
+    dependencies:
+      - base >=4.7 && <4.9

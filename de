@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ ! -f .envrc ]]; then
+    cat > .envrc <<EOF
+. ../use_nix.sh
+
+keep_vars SSH_AUTH_SOCK
+source <(direnv apply_dump .envrc.cache)
+source <(reset_kept)
+
+watch_file .envrc
+watch_file .envrc.cache
+watch_file default.nix
+EOF
+
+    [[ -f package.nix ]] && echo "watch_file package.nix" >> .envrc
+    [[ -f shell.nix ]] && echo "watch_file shell.nix" >> .envrc
+fi
+
+exec nix-shell "${NIXARGS[@]}"                                  \
+     --run 'unset SSH_AUTH_SOCK ${!DIRENV_@} && direnv dump'    \
+     > .envrc.cache
