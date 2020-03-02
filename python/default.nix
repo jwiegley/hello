@@ -21,7 +21,14 @@ pkgs.${packages}.buildPythonPackage rec {
 
   src = ./.;
 
-  phases = [ "unpackPhase" "installPhase" ];
+  buildPhase = ''
+    touch hello
+  '';
+
+  doCheck = true;
+  checkPhase = ''
+    cmp -b <(./hello) <(echo "Hello, world!")
+  '';
 
   installPhase = ''
     mkdir -p $out/bin

@@ -23,11 +23,15 @@ pkgs.${packages}.stdenv.mkDerivation rec {
   buildInputs = [];
 
   enableParallelBuilding = true;
+  buildPhase = "make -j$NIX_BUILD_CORES";
+
+  doCheck = true;
+  checkPhase = ''
+    cmp -b <(./hello) <(echo "Hello, world!")
+  '';
 
   installPhase = ''
     mkdir -p $out/bin
     cp hello $out/bin
   '';
-
-  buildPhase = "make -j$NIX_BUILD_CORES";
 }

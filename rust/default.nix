@@ -43,14 +43,26 @@ in rustPlatform.buildRustPackage rec {
 
   src = ./.;
 
-  cargoSha256 = "1nwk386lfj9prgp3mwnyxgjhk55vk0pcxndfrwlbcs14hixrskfg";
+  cargoSha256 = "0pg497l9p0pcfipk4szvlb404bzhdmcrpkyr7xy5xw95gajwdvfa";
+  validateCargoDeps = false;
 
   cargoBuildFlags = [];
 
+  preUnpack = ''
+    mkdir source
+    cp ${src}/Cargo.lock source/Cargo.lock
+  '';
+
+  enableParallelBuilding = true;
   buildInputs = [
     cargo rustfmt rustPlatform.rustcSrc rls rustdocs
   ];
-  enableParallelBuilding = true;
+
+  doCheck = true;
+  checkPhase = ''
+    cmp -b <(eval $(find target -name hello -type f -executable)) \
+           <(echo "Hello, world!")
+  '';
 
   env = pkgs.buildEnv { name = pname; paths = buildInputs; };
 }
