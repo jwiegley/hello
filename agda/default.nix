@@ -16,6 +16,9 @@
 let
   haskellPackages = pkgs.haskell.packages.${compiler};
 
+  # With thanks to Ryan Orendorff <ryan@orendorff.io> for providing the Agda
+  # example.
+
   # The standard library in nixpkgs does not come with a *.agda-lib file, so
   # we generate it here.
   standard-library-agda-lib = pkgs.writeText "standard-library.agda-lib" ''
