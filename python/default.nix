@@ -15,7 +15,7 @@
 }:
 
 pkgs.${packages}.buildPythonPackage rec {
-  pname = "hello";
+  pname = "hello-${version}";
   version = "1.0.0";
   name = "${pname}-${version}";
 

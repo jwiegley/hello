@@ -22,8 +22,8 @@
 
 let haskellPackages = pkgs.haskell.packages.${compiler};
 
-in haskellPackages.developPackage {
-  name = "hello";
+in haskellPackages.developPackage rec {
+  name = "haskell-${compiler}-hello";
   root = ./.;
 
   modifier = drv: pkgs.haskell.lib.overrideCabal drv (attrs: {

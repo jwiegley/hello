@@ -47,7 +47,7 @@ let
   };
 
 in pkgs.stdenv.mkDerivation rec {
-  name = "agda-hello-${version}";
+  name = "agda-${compiler}-hello-${version}";
   version = "1.0";
 
   src = ./.;

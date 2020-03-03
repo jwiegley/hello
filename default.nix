@@ -12,10 +12,61 @@
 }:
 
 {
-  hello-agda      = pkgs.callPackage ./agda {};
-  hello-cplusplus = pkgs.callPackage ./c++ {};
-  hello-coq       = pkgs.callPackage ./coq {};
-  hello-haskell   = pkgs.callPackage ./haskell {};
-  hello-python    = pkgs.callPackage ./python {};
-  hello-rust      = pkgs.callPackage ./rust {};
+  hello-agda         = pkgs.callPackage ./agda    {};
+
+  hello-cplusplus_5  = pkgs.callPackage ./c++     { packages = "llvmPackages_5"; };
+  hello-cplusplus_6  = pkgs.callPackage ./c++     { packages = "llvmPackages_6"; };
+  hello-cplusplus_7  = pkgs.callPackage ./c++     { packages = "llvmPackages_7"; };
+  hello-cplusplus_8  = pkgs.callPackage ./c++     { packages = "llvmPackages_8"; };
+  hello-cplusplus_9  = pkgs.callPackage ./c++     { packages = "llvmPackages_9"; };
+  # jww (2020-03-03): Dies with: Cannot find llvmPackages_10
+  # hello-cplusplus_10 = pkgs.callPackage ./c++     { packages = "llvmPackages_10"; };
+
+  # jww (2020-03-03): Dies with:
+  # install: cannot create directory '...-coq8.5-hello-1.0/lib/coq/8.5//user-contrib/
+  # hello-coq_8_5      = pkgs.callPackage ./coq     { packages = "coqPackages_8_5"; };
+  # jww (2020-03-03): Dies with:
+  # install: cannot create directory '...-coq8.6-hello-1.0/lib/coq/8.6//user-contrib/
+  # hello-coq_8_6      = pkgs.callPackage ./coq     { packages = "coqPackages_8_6"; };
+  hello-coq_8_7      = pkgs.callPackage ./coq     { packages = "coqPackages_8_7"; };
+  hello-coq_8_8      = pkgs.callPackage ./coq     { packages = "coqPackages_8_8"; };
+  hello-coq_8_9      = pkgs.callPackage ./coq     { packages = "coqPackages_8_9"; };
+  hello-coq_8_10     = pkgs.callPackage ./coq     { packages = "coqPackages_8_10"; };
+  hello-coq_8_11     = pkgs.callPackage ./coq     { packages = "coqPackages_8_11"; };
+
+  hello-haskell_844  = (pkgs.callPackage ./haskell { compiler = "ghc844"; })
+    .overrideAttrs(_: { name = "haskell-ghc844-hello-1.0.0"; });
+  hello-haskell_86   = (pkgs.callPackage ./haskell { compiler = "ghc865"; })
+    .overrideAttrs(_: { name = "haskell-ghc865-hello-1.0.0"; });
+  hello-haskell_882  = (pkgs.callPackage ./haskell { compiler = "ghc882"; })
+    .overrideAttrs(_: { name = "haskell-ghc882-hello-1.0.0"; });
+  # jww (2020-03-03): Fails building several dependencies.
+  # hello-haskell_8101 = pkgs.callPackage ./haskell { compiler = "ghc8101"; };
+
+  hello-python_2     = pkgs.callPackage ./python  { packages = "python2Packages"; };
+  hello-python_3     = pkgs.callPackage ./python  { packages = "python3Packages"; };
+
+  hello-rust_1_38_0  = pkgs.callPackage ./rust    { packages = "rustPackages_1_38_0"; };
+  hello-rust_1_41_0  = pkgs.callPackage ./rust    { packages = "rustPackages_1_41_0"; };
+
+  # hello-go           = pkgs.callPackage ./go         { packages = "python2Packages"; };
+
+  # hello-scala        = pkgs.callPackage ./scala      { packages = "python2Packages"; };
+
+  hello-common_lisp   = pkgs.callPackage ./lisp       { compiler = "sbcl"; };
+
+  hello-emacs_lisp_25 = pkgs.callPackage ./emacs      { packages = "emacs25Packages"; };
+  hello-emacs_lisp_26 = pkgs.callPackage ./emacs      { packages = "emacs26Packages"; };
+
+  # hello-nodejs       = pkgs.callPackage ./nodejs     { packages = "python2Packages"; };
+
+  # hello-ruby         = pkgs.callPackage ./ruby       { packages = "python2Packages"; };
+
+  # hello-ocaml        = pkgs.callPackage ./ocaml      { packages = "python2Packages"; };
+
+  # hello-lean         = pkgs.callPackage ./lean       { packages = "python2Packages"; };
+
+  # hello-purescript   = pkgs.callPackage ./purescript { packages = "python2Packages"; };
+
+  # hello-nix          = pkgs.callPackage ./nix        { packages = "python2Packages"; };
 }

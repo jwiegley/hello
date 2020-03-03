@@ -38,12 +38,16 @@ let
   };
 
 in rustPlatform.buildRustPackage rec {
-  pname = "hello";
+  pname = "${packages}-hello";
   version = "1.0.0";
 
   src = ./.;
 
-  cargoSha256 = "0pg497l9p0pcfipk4szvlb404bzhdmcrpkyr7xy5xw95gajwdvfa";
+  cargoSha256 =
+    if packages == "rustPackages_1_38_0" then
+      "0fwxf17ndljwhhd09814dmnfd9mdg46g1i0kvckrg4p3cj7m2a96"
+    else
+      "0kbf1hpcdmy1ap0mbswmhda779w1224p3wr0001q3igy41d6cm81";
   validateCargoDeps = false;
 
   cargoBuildFlags = [];
