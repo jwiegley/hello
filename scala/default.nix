@@ -1,4 +1,4 @@
-{ packages ? "python3Packages"
+{ compiler ? "scala_2_13"
 
 , rev    ? "1fe82110febdf005d97b2927610ee854a38a8f26"
 , sha256 ? "08x6saa7iljyq2m0j6p9phy0v17r3p8l7vklv7y7gvhdc7a85ppi"
@@ -14,25 +14,30 @@
   }
 }:
 
-pkgs.${packages}.buildPythonPackage rec {
-  pname = "hello";
+pkgs.stdenv.mkDerivation rec {
+  pname = "${compiler}-hello";
   version = "1.0.0";
-  name = "${pname}-${version}";
 
   src = ./.;
 
+  buildInputs = [ pkgs.${compiler} pkgs.scalafmt ];
+
+  enableParallelBuilding = true;
   buildPhase = ''
-    touch hello
+    scalac Hello.scala
   '';
+
+  CLASSPATH = "${pkgs.${compiler}}/lib/scala-library.jar:.";
 
   doCheck = true;
   checkPhase = ''
-    cmp -b <(./hello) <(echo "Hello, world!")
+    cmp -b <(java Hello) <(echo "Hello, world!")
   '';
 
   installPhase = ''
     mkdir -p $out/bin
-    cp hello $out/bin
-    # python -mpy_compile $out/bin/hello
+    cp Hello*.class $out/bin
   '';
+
+  env = pkgs.buildEnv { name = pname; paths = buildInputs; };
 }

@@ -1,4 +1,4 @@
-{ packages ? "python3Packages"
+{ packages ? "buildGo113Package"
 
 , rev    ? "1fe82110febdf005d97b2927610ee854a38a8f26"
 , sha256 ? "08x6saa7iljyq2m0j6p9phy0v17r3p8l7vklv7y7gvhdc7a85ppi"
@@ -14,25 +14,25 @@
   }
 }:
 
-pkgs.${packages}.buildPythonPackage rec {
-  pname = "hello";
+pkgs.${packages} rec {
+  pname = "hello-${version}";
   version = "1.0.0";
-  name = "${pname}-${version}";
+
+  goPackagePath = "github.com/jwiegley/hello";
+  subPackages = [];
 
   src = ./.;
 
-  buildPhase = ''
-    touch hello
-  '';
+  # buildInputs = pkgs.stdenv.lib.optionals pkgs.stdenv.hostPlatform.isDarwin
+  #   [ pkgs.CoreFoundation ];
+
+  buildFlags = [ "--tags" "release" ];
 
   doCheck = true;
   checkPhase = ''
-    cmp -b <(./hello) <(echo "Hello, world!")
+    cmp -b <(eval $(find . -name hello -type f -executable)) \
+           <(echo "Hello, world!")
   '';
 
-  installPhase = ''
-    mkdir -p $out/bin
-    cp hello $out/bin
-    # python -mpy_compile $out/bin/hello
-  '';
+  env = pkgs.buildEnv { name = pname; paths = []; };
 }
