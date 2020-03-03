@@ -12,13 +12,13 @@
 }:
 
 {
-  hello-agda         = pkgs.callPackage ./agda    {};
+  hello-agda          = pkgs.callPackage ./agda    {};
 
-  hello-cplusplus_5  = pkgs.callPackage ./c++     { packages = "llvmPackages_5"; };
-  hello-cplusplus_6  = pkgs.callPackage ./c++     { packages = "llvmPackages_6"; };
-  hello-cplusplus_7  = pkgs.callPackage ./c++     { packages = "llvmPackages_7"; };
-  hello-cplusplus_8  = pkgs.callPackage ./c++     { packages = "llvmPackages_8"; };
-  hello-cplusplus_9  = pkgs.callPackage ./c++     { packages = "llvmPackages_9"; };
+  hello-cplusplus_5   = pkgs.callPackage ./c++     { packages = "llvmPackages_5"; };
+  hello-cplusplus_6   = pkgs.callPackage ./c++     { packages = "llvmPackages_6"; };
+  hello-cplusplus_7   = pkgs.callPackage ./c++     { packages = "llvmPackages_7"; };
+  hello-cplusplus_8   = pkgs.callPackage ./c++     { packages = "llvmPackages_8"; };
+  hello-cplusplus_9   = pkgs.callPackage ./c++     { packages = "llvmPackages_9"; };
   # jww (2020-03-03): Dies with: Cannot find llvmPackages_10
   # hello-cplusplus_10 = pkgs.callPackage ./c++     { packages = "llvmPackages_10"; };
 
@@ -30,7 +30,7 @@
 
   hello-haskell_844   = (pkgs.callPackage ./haskell { compiler = "ghc844"; })
     .overrideAttrs(_: { name = "haskell-ghc844-hello-1.0.0"; });
-  hello-haskell_86    = (pkgs.callPackage ./haskell { compiler = "ghc865"; })
+  hello-haskell_865   = (pkgs.callPackage ./haskell { compiler = "ghc865"; })
     .overrideAttrs(_: { name = "haskell-ghc865-hello-1.0.0"; });
   hello-haskell_882   = (pkgs.callPackage ./haskell { compiler = "ghc882"; })
     .overrideAttrs(_: { name = "haskell-ghc882-hello-1.0.0"; });

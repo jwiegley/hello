@@ -46,12 +46,15 @@ pkgs.stdenv.mkDerivation rec {
   ];
   enableParallelBuilding = true;
 
-  buildPhase = "make -f Makefile.coq JOBS=$NIX_BUILD_CORES";
-  preBuild = "coq_makefile -f _CoqProject -o Makefile.coq";
+  buildPhase = ''
+    coq_makefile -f _CoqProject -o Makefile.coq
+    make -f Makefile.coq JOBS=$NIX_BUILD_CORES
+  '';
   installFlags = "COQLIB=$(out)/lib/coq/${coq.coq-version}/";
 
   env = pkgs.buildEnv { name = name; paths = buildInputs; };
   passthru = {
-    compatibleCoqVersions = v: builtins.elem v [ "8.6" "8.7" "8.8" "8.9" "8.10" "8.11" ];
+    compatibleCoqVersions = v:
+      builtins.elem v [ "8.6" "8.7" "8.8" "8.9" "8.10" "8.11" ];
  };
 }
