@@ -22,12 +22,6 @@
   # jww (2020-03-03): Dies with: Cannot find llvmPackages_10
   # hello-cplusplus_10 = pkgs.callPackage ./c++     { packages = "llvmPackages_10"; };
 
-  # jww (2020-03-03): Dies with:
-  # install: cannot create directory '...-coq8.5-hello-1.0/lib/coq/8.5//user-contrib/
-  # hello-coq_8_5      = pkgs.callPackage ./coq     { packages = "coqPackages_8_5"; };
-  # jww (2020-03-03): Dies with:
-  # install: cannot create directory '...-coq8.6-hello-1.0/lib/coq/8.6//user-contrib/
-  # hello-coq_8_6      = pkgs.callPackage ./coq     { packages = "coqPackages_8_6"; };
   hello-coq_8_7       = pkgs.callPackage ./coq     { packages = "coqPackages_8_7"; };
   hello-coq_8_8       = pkgs.callPackage ./coq     { packages = "coqPackages_8_8"; };
   hello-coq_8_9       = pkgs.callPackage ./coq     { packages = "coqPackages_8_9"; };
@@ -62,17 +56,7 @@
   hello-emacs_lisp_25 = pkgs.callPackage ./emacs   { packages = "emacs25Packages"; };
   hello-emacs_lisp_26 = pkgs.callPackage ./emacs   { packages = "emacs26Packages"; };
 
-  # hello-nodejs       = pkgs.callPackage ./nodejs     { packages = ""; };
-
   hello-ruby_2_5      = pkgs.callPackage ./ruby    { compiler = "ruby_2_5"; };
   hello-ruby_2_6      = pkgs.callPackage ./ruby    { compiler = "ruby_2_6"; };
   hello-ruby_2_7      = pkgs.callPackage ./ruby    { compiler = "ruby_2_7"; };
-
-  # hello-ocaml        = pkgs.callPackage ./ocaml      { packages = ""; };
-
-  # hello-lean         = pkgs.callPackage ./lean       { packages = ""; };
-
-  # hello-purescript   = pkgs.callPackage ./purescript { packages = ""; };
-
-  # hello-nix          = pkgs.callPackage ./nix        { packages = ""; };
 }
