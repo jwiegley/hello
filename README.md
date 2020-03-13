@@ -1,5 +1,7 @@
 # Greeting the world in many languages
 
+[![Build Status](https://api.travis-ci.org/jwiegley/hello.svg)](https://travis-ci.org/jwiegley/hello)
+
 This repository contains simple Hello World programs in various languages that
 I use. What is perhaps of more interest is that I've created simple Nix
 templates for getting started with these languages. For any one of these
