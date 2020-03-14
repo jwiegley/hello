@@ -31,19 +31,14 @@ max-jobs = 4
 cores = 1
 sandbox = true
 
-substituters = https://nix.dfinity.systems https://cache.nixos.org/
-trusted-substituters = https://nix.dfinity.systems
-trusted-public-keys = cache.dfinity.systems-1:IcOn/2SVyPGOi8i3hKhQOlyiSQotiOBKwTFmyPX5YNw= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+substituters = https://cache.nixos.org/
+trusted-substituters =
+trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
 require-sigs = true
 
 trusted-users = vagrant
 allowed-users = *
 EOF
     chown -R vagrant ~vagrant/.config
-
-    cat >> ~vagrant/.bashrc <<EOF
-export CARGO_TARGET_DIR=$HOME/target
-export CARGO_HOME=$CARGO_TARGET_DIR/.cargo-home
-EOF
   SHELL
 end
