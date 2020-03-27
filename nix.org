@@ -42,20 +42,25 @@ Before that:
 - Services like Cachix, Nixery, etc.
 
 * Three kinds
-
 ** Users
 
 Users of Nix code written by others.
+
+#+begin_src sh
 
 nix build -f .              # or nix-build
 nix-shell
 nix-env
 nix search
 
+#+end_src
+
 ** Maintainers
 
 Some knowledge of the Nix language, builtins, libraries.
 Cargo cults Nix code, follow recipes.
+
+#+begin_src sh
 
 nix edit
 nix log
@@ -64,9 +69,13 @@ nix-locate               # separately installed: nix-index
 nix-info                 # separately installed
 nix-bash-completions     # separately installed
 
+#+end_src
+
 ** Developers
 
 Develops packages in Nix, sets up build tooling.
+
+#+begin_src sh
 
 nix repl
 nix eval                 # nix-instantiate
@@ -74,8 +83,9 @@ nix why-depends
 nix copy
 nix-diff                 # separately installed
 
-* Nix language basics
+#+end_src
 
+* Nix language basics
 ** Pure functional language
 
 Pure: "outputs always follow from inputs"
@@ -84,21 +94,23 @@ Functional: Functions are first-class, used as building blocks
 
 ** Untyped lambda calculus core:
 
-var: x
-lam: x: x
-app: x x
+| var | x    |
+| lam | x: x |
+| app | x x  |
 
 ** With several added data types
 
-boolean
-int
-float
-string
-path
-list
-attrset (hashmap, dict, map, etc)
+- boolean
+- int
+- float
+- string
+- path
+- list
+- attrset (hashmap, dict, map, etc)
 
 ** Some syntactic sugar
+
+#+begin_src nix
 
 arg: { arg = arg; }
 arg: { inherit arg; }
@@ -106,17 +118,23 @@ arg: { inherit arg; }
 { key1, key2 = SomeDefault, ... }@args:
   { inherit (args) key1; }
 
+#+end_src
+
 ** A few novel additions
+
+#+begin_src nix
 
 let x = 10; with x; x
 
+#+end_src
+
 ** Lots of builtins
 
-builtins.fetchGit
+=builtins.fetchGit=
 
 ** And a standard library implemented in nixpkgs
 
-nixpkgs.stdenv.lib.filterAttrs
+=nixpkgs.stdenv.lib.filterAttrs=
 
 * A template: github.com/jwiegley/hello
 
