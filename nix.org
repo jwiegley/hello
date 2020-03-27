@@ -1,0 +1,127 @@
+#+TITLE: Using Nix for Haskell Development
+
+* Who am I?
+
+John Wiegley
+Rust/Haskell/Coq/Nix/Emacs developer at DFINITY.org
+
+Using Nix to manage my macOS machines for 6 years;
+  thanks Ryan Trinkle for introducing me!
+
+Before that:
+  - stow
+  - Fink
+  - MacPorts
+  - Homebrew
+
+* "Nix" is several things
+
+- The Nix language
+
+- A data store manager
+  =/nix=
+
+- A build tool driver
+  nix build (more fundamentally: builtins.derivationStrict)
+
+- A package ecosystem
+  nixpkgs
+
+* Why Nix
+
+- Atomic
+- Rollbacks
+- Absolute References
+- Deduplication
+- Caching
+- Reproducibility
+- Distributed Builds
+- Sandboxing
+- Environments
+
+- Services like Cachix, Nixery, etc.
+
+* Three kinds
+
+** Users
+
+Users of Nix code written by others.
+
+nix build -f .              # or nix-build
+nix-shell
+nix-env
+nix search
+
+** Maintainers
+
+Some knowledge of the Nix language, builtins, libraries.
+Cargo cults Nix code, follow recipes.
+
+nix edit
+nix log
+nix ping-store
+nix-locate               # separately installed: nix-index
+nix-info                 # separately installed
+nix-bash-completions     # separately installed
+
+** Developers
+
+Develops packages in Nix, sets up build tooling.
+
+nix repl
+nix eval                 # nix-instantiate
+nix why-depends
+nix copy
+nix-diff                 # separately installed
+
+* Nix language basics
+
+** Pure functional language
+
+Pure: "outputs always follow from inputs"
+
+Functional: Functions are first-class, used as building blocks
+
+** Untyped lambda calculus core:
+
+var: x
+lam: x: x
+app: x x
+
+** With several added data types
+
+boolean
+int
+float
+string
+path
+list
+attrset (hashmap, dict, map, etc)
+
+** Some syntactic sugar
+
+arg: { arg = arg; }
+arg: { inherit arg; }
+
+{ key1, key2 = SomeDefault, ... }@args:
+  { inherit (args) key1; }
+
+** A few novel additions
+
+let x = 10; with x; x
+
+** Lots of builtins
+
+builtins.fetchGit
+
+** And a standard library implemented in nixpkgs
+
+nixpkgs.stdenv.lib.filterAttrs
+
+* A template: github.com/jwiegley/hello
+
+Generally when starting a new project, you want:
+
+- a shell with just the tools required
+- anyone else can replicate your environment
+- easy to setup automated builds (CI)
