@@ -14,6 +14,11 @@ Before that:
   - MacPorts
   - Homebrew
 
+Related repos:
+  - https://github.com/jwiegley/nix-config
+  - https://github.com/jwiegley/hello
+  - https://github.com/jwiegley/dot-emacs
+
 * "Nix" is several things
 
 - The Nix language
@@ -54,6 +59,12 @@ nix-env
 nix search
 
 #+end_src
+
+*** Power Users
+
+- =direnv=
+- =emacs-direnv=
+- =lorri=
 
 ** Maintainers
 
@@ -143,3 +154,5 @@ Generally when starting a new project, you want:
 - a shell with just the tools required
 - anyone else can replicate your environment
 - easy to setup automated builds (CI)
+
+* Cribbing from nixpkgs
