@@ -13,7 +13,18 @@
     config.allowUnfree = true;
     config.allowBroken = false;
     overlays = [
-      (self: super: {})
+      (self: super: {
+         haskell = super.haskell // {
+           packages = super.haskell.packages // {
+             ${compiler} = super.haskell.packages.${compiler} // rec {
+               ghc = super.haskell.packages.${compiler}.ghc //
+                 { withPackages =
+                     super.haskell.packages.${compiler}.ghc.withHoogle; };
+               ghcWithPackages = ghc.withPackages;
+             };
+           };
+         };
+       })
     ];
   }
 
