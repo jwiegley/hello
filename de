@@ -2,10 +2,6 @@
 
 set -e
 
-# jww (2020-04-01): I use this to keep build products in a separate directory
-# tree.
-PRODUCTS=$(echo $PWD | sed -E 's/\b(dfinity|src)\b/Products/')
-
 if [[ ! -f .envrc ]]; then
     cat > .envrc <<'EOF'
 keep_vars() {
