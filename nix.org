@@ -145,7 +145,7 @@ let x = 10; with x; x
 
 ** And a standard library implemented in nixpkgs
 
-=nixpkgs.stdenv.lib.filterAttrs=
+=nixpkgs.pkgs.lib.filterAttrs=
 
 * A template: github.com/jwiegley/hello
 

@@ -23,7 +23,7 @@ pkgs.${packages} rec {
 
   src = ./.;
 
-  # buildInputs = pkgs.stdenv.lib.optionals pkgs.stdenv.hostPlatform.isDarwin
+  # buildInputs = pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin
   #   [ pkgs.CoreFoundation ];
 
   buildFlags = [ "--tags" "release" ];

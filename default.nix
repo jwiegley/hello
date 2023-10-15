@@ -29,13 +29,11 @@
   hello-coq_8_9       = pkgs.callPackage ./coq     { packages = "coqPackages_8_9"; };
   hello-coq_8_10      = pkgs.callPackage ./coq     { packages = "coqPackages_8_10"; };
   hello-coq_8_11      = pkgs.callPackage ./coq     { packages = "coqPackages_8_11"; };
+  hello-coq_8_12      = pkgs.callPackage ./coq     { packages = "coqPackages_8_12"; };
+  hello-coq_8_13      = pkgs.callPackage ./coq     { packages = "coqPackages_8_13"; };
 
-  hello-haskell_844   = (pkgs.callPackage ./haskell { compiler = "ghc844"; })
-    .overrideAttrs(_: { name = "haskell-ghc844-hello-1.0.0"; });
-  hello-haskell_865   = (pkgs.callPackage ./haskell { compiler = "ghc865"; })
-    .overrideAttrs(_: { name = "haskell-ghc865-hello-1.0.0"; });
-  hello-haskell_882   = (pkgs.callPackage ./haskell { compiler = "ghc882"; })
-    .overrideAttrs(_: { name = "haskell-ghc882-hello-1.0.0"; });
+  hello-haskell_884   = (pkgs.callPackage ./haskell { compiler = "ghc884"; })
+    .overrideAttrs(_: { name = "haskell-ghc884-hello-1.0.0"; });
   # jww (2020-03-03): Fails building several dependencies.
   # hello-haskell_8101 = pkgs.callPackage ./haskell { compiler = "ghc8101"; };
 

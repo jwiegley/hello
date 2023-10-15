@@ -1,4 +1,4 @@
-{ packages ? "rustPackages_1_41_0"
+{ packages ? "rustPackages"
 
 , rev      ? "1fe82110febdf005d97b2927610ee854a38a8f26"
 , sha256   ? "08x6saa7iljyq2m0j6p9phy0v17r3p8l7vklv7y7gvhdc7a85ppi"
@@ -43,11 +43,7 @@ in rustPlatform.buildRustPackage rec {
 
   src = ./.;
 
-  cargoSha256 =
-    if packages == "rustPackages_1_38_0" then
-      "0fwxf17ndljwhhd09814dmnfd9mdg46g1i0kvckrg4p3cj7m2a96"
-    else
-      "0kbf1hpcdmy1ap0mbswmhda779w1224p3wr0001q3igy41d6cm81";
+  cargoSha256 = "1jg8kbz79xj0wb58mhiinvwl863gdlvqccq7hvh65ld9wnlga8hh";
   validateCargoDeps = false;
 
   cargoBuildFlags = [];

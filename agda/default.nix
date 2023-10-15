@@ -1,4 +1,4 @@
-{ compiler ? "ghc865"
+{ compiler ? "ghc8106"
 
 , rev      ? "1fe82110febdf005d97b2927610ee854a38a8f26"
 , sha256   ? "08x6saa7iljyq2m0j6p9phy0v17r3p8l7vklv7y7gvhdc7a85ppi"

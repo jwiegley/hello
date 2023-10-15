@@ -52,7 +52,7 @@ in haskellPackages.developPackage rec {
     inherit doBenchmark;
 
     configureFlags =
-      pkgs.stdenv.lib.optional doStrict "--ghc-options=-Werror";
+      pkgs.lib.optional doStrict "--ghc-options=-Werror";
 
     passthru = {
       nixpkgs = pkgs;
